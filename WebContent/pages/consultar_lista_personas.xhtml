@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="/template/plantilla.xhtml">
+	<ui:param name="tituloPagina" value="Consultar Lista de Personas" />
+
+	<ui:define name="contenido">
+ 	 
+	    <h:form>
+		<br></br><br></br>
+	
+	<div class="container">	
+		<div class="card">
+		  <h5 class="card-header">Consulta lista de Empleados</h5>
+		  <div class="card-body">
+		    <h5 class="card-title"></h5>
+		    <p class="card-text">Listado de Empleados</p>
+	
+				<div class="container">
+					<h:dataTable class="table table-bordered table-hover text-center" style="width:100%" value="#{nominaBean.listaEmpleados}" 
+			      		var="datos" border="1" rendered="#{nominaBean.listaEmpleados.size()>0}">
+			      	<h:column>    				
+			            <f:facet name="header" >
+			            	<h:outputLabel value="Documento" />
+			            </f:facet> 
+			            <h:outputLabel value="#{datos.documento}" />	            
+			         </h:column>
+			         <h:column>    				
+			            <f:facet name="header">
+			            	<h:outputLabel value="Nombre" />
+			            </f:facet> 
+			            <h:inputText class="form-control" value="#{datos.nombre}" rendered="#{datos.editar}" />   	
+			            <h:outputLabel value="#{datos.nombre}" rendered="#{not datos.editar}" />	            
+			         </h:column>
+			         <h:column>
+			             <f:facet name="header">
+			            	<h:outputLabel value="Sexo" />
+			            </f:facet> 
+			           	<h:selectOneMenu class="form-control" value="#{datos.sexo}" style="width: 150px; "  rendered="#{datos.editar}">
+				      		<f:selectItem itemValue="M" itemLabel="Masculino"/>
+				      		<f:selectItem itemValue="F" itemLabel="Femenino"/>
+			      		</h:selectOneMenu>    
+			            <h:outputLabel value="#{datos.sexo}" rendered="#{not datos.editar}">
+			            	 <f:converter converterId="datosConverter"/>	
+			            </h:outputLabel>		
+			         </h:column>
+			         <h:column>
+			          <f:facet name="header">
+			            	<h:outputLabel value="Direccion" />
+			            </f:facet>   
+			            <h:inputText class="form-control" value="#{datos.direccion}" rendered="#{datos.editar}" />  
+			            <h:outputLabel value="#{datos.direccion}" rendered="#{not datos.editar}"/>	 
+			         </h:column>
+						<h:column>
+			            <f:facet name="header">
+			            	<h:outputLabel value="Telefono" />
+			            </f:facet>   
+			            <h:inputText class="form-control" value="#{datos.telefono}" rendered="#{datos.editar}"/> 
+			            <h:outputLabel value="#{datos.telefono}" rendered="#{not datos.editar}"/>	
+			         </h:column>
+			         <h:column>
+			            <f:facet name="header">
+			            	<h:outputLabel value="Salario" />
+			            </f:facet>   
+			            <h:inputText class="form-control" value="#{datos.salario}" rendered="#{datos.editar}" /> 
+			            <h:outputLabel value="#{datos.salario}" rendered="#{not datos.editar}"/>	
+			         </h:column>
+			         <h:column>
+			         	<f:facet name="header">
+			         		<h:outputLabel value="Tipo" />
+			         	</f:facet>
+			         	<h:selectOneMenu class="form-control" value="#{datos.tipo}" style="width: 150px; "  rendered="#{datos.editar}">
+				      		<f:selectItem itemValue="1" itemLabel="Administrador"/>
+				      		<f:selectItem itemValue="2" itemLabel="Empleado"/>
+			      		</h:selectOneMenu>    
+			            <h:outputLabel value="#{datos.tipo}" rendered="#{not datos.editar}">
+			            	<f:converter converterId="datosConverter"/>	
+			            </h:outputLabel>	
+			         </h:column>
+			            <h:column>
+			            <f:facet name="header">
+			            	<h:outputLabel value="Acciones" />
+			            </f:facet>   
+			            <h:panelGroup rendered="#{datos.permiso}">
+				            <h:commandLink  actionListener="#{nominaBean.editarPersona(datos)}" rendered="#{not datos.editar}" >
+				            				<h:graphicImage library="images" name="edit.png" />
+							</h:commandLink>
+				             &nbsp;
+				            <h:commandLink  actionListener="#{nominaBean.guardarPersona(datos)}" rendered="#{datos.editar}">
+				            				<h:graphicImage library="images" name="save.png" />
+							</h:commandLink>
+				            &nbsp;
+				            <h:commandLink actionListener="#{nominaBean.eliminarPersona(datos)}" onclick="if(!confirm('Esta seguro de eliminar al empleado?')) return false" rendered="#{loginBean.permisosAdmin}">
+				            				<h:graphicImage library="images" name="delete.png" />
+							</h:commandLink>
+			            </h:panelGroup>
+			            
+			         </h:column>
+			      </h:dataTable>
+				
+					
+				</div>
+			</div>
+		</div>	
+	</div>
+			
+		<br></br>
+		
+	
+		<div class="container">
+		
+		<h:panelGroup rendered="#{nominaBean.mostrar}">
+			<div class="alert alert-primary" role="alert">
+				<div class="form-group row">
+		  			<h:outputLabel class="col-md-12" value="#{nominaBean.mensaje}" />
+		  		</div>
+			</div>
+		</h:panelGroup>
+		
+		<h:panelGroup rendered="#{nominaBean.mostrarError}">
+			<div class="alert alert-danger" role="alert">
+				<div class="form-group row">
+		  			<h:outputLabel class="col-md-12" value="#{nominaBean.mensaje}" />
+		  		</div>
+			</div>
+		</h:panelGroup>
+	</div>
+	
+
+        </h:form>
+      
+	</ui:define>
+</ui:composition>	
+</html>

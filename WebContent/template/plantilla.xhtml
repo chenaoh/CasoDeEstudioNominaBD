@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+<h:head>
+	<title>#{tituloPagina}</title>
+	
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" /> -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputScript library="js" name="jquery-3.5.1.min.js"/>	
+	<h:outputScript library="js" name="bootstrap.min.js"  target="body"/>
+	
+	<f:metadata>
+		<f:event listener="#{loginBean.validarAcceso()}" type="preRenderView"></f:event>
+	</f:metadata>
+		
+</h:head>  
+
+<h:body style="background-color:rgb(236,239,241)"> 
+
+		<nav class="navbar navbar-expand-lg navbar-dark"  style="background-color: #0B2161;">
+		  <a class="navbar-brand" href="inicio.xhtml">GESTION DE EMPLEADOS</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+		  <h:form>
+		    <ul class="navbar-nav">
+		     <li class="nav-item">
+			        <h:commandLink styleClass="nav-link" action="registro_personas?faces-redirect=true" value="Registrar Empleado" rendered="#{loginBean.permisosAdmin}"/>
+			 </li>
+			 <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Consultar Empleado
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			          <h:commandLink class="dropdown-item" value="Consulta Individual" action="/pages/consultar_personas?faces-redirect=true"/>
+		    	      <h:commandLink class="dropdown-item" value="Consultar Lista" action="/pages/consultar_lista_personas?faces-redirect=true"/>
+		        </div>
+	      	</li>
+			 <li class="nav-item">
+			        <h:commandLink  styleClass="nav-link"  value="Cambiar Password" />
+			 </li>
+			 <li class="nav-item">
+			        <h:commandLink  styleClass="nav-link"  value="Acerca de..." />
+			 </li>
+			 			 
+		    </ul>
+		   </h:form>
+		  </div>
+		  
+		<h:form class="form-inline">
+			<h:outputLabel value="Usuario: #{loginBean.empleadoVo.nombre}"  style="color: white"/>&nbsp;&nbsp;
+	 		<h:commandButton class="btn btn-outline-warning my-2 my-sm-0" value="Salir" action="login" />
+	 	</h:form>
+		  
+		</nav>
+
+			<ui:insert name="contenido" />
+
+	<footer class="footer">
+        <div class="container">  
+           <p>&copy; CoDejaVu - Cristian David Henao Hoyos.</p>
+        </div>
+    </footer>
+      
+      <style>
+          .footer{
+              background-color: #0B2161;
+              width: 100%;
+              height: 25px;
+              bottom: 0;
+              position: fixed;
+              text-align: center;
+              color: #fff;
+              }
+      </style>
+
+</h:body> 
+</html>

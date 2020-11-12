@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+<ui:composition template="/template/plantilla.xhtml">
+	<ui:param name="tituloPagina" value="Inicio" />
+	<ui:param name="pagina" value="Pagina de Inicio" />
+
+	<ui:define name="contenido">
+		
+		<h:form>
+			<div class="container">
+				<br></br>
+				<div class="jumbotron jumbotron-fluid">
+				  <div class="container">
+				    <h1 class="display-4">Bienvenido #{loginBean.empleadoVo.nombre} a SIGE</h1>
+				    <h2 class="display-5">Sistema Gestión de Empleados!</h2>
+				    <br></br> 
+					 <p class="lead">Navega desde el Menú superior donde podrás realizar las siguientes acciones:</p>
+						    
+						    <ul>
+						    	<li><p class="lead">Registro de Empleados</p></li>
+						    	<li><p class="lead">Consulta de Empleados de Empleados</p>
+							    	<ul>	
+							    		<li><p class="lead">Consulta individual</p></li>
+							    		<li><p class="lead">Consulta Lista de Empleados</p></li>
+							    	</ul>
+						    	</li>
+						    	<li><p class="lead">Cambiar Password</p></li>
+						    	<li><p class="lead">Pagos</p></li>
+						    	<li><p class="lead">Acerca de...</p></li>
+						    </ul>
+				  </div>
+				</div>
+				</div>
+		</h:form>
+		
+	</ui:define>
+
+</ui:composition>
+
+</html>

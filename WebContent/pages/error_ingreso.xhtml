@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Gestión de Empleados</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="X-UA-Conpatible" content="IE=edge"/>
+	
+	<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" /> -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+	<h:outputScript library="js" name="jquery-3.5.1.min.js"/>	
+	<h:outputScript library="js" name="bootstrap.min.js"  target="body"/>	
+
+</h:head> 
+<h:body style="background-color:rgb(236,239,241)">  
+	
+		<nav class="navbar navbar-dark" style="background-color: #0B2161;">
+		  <a class="navbar-brand" href="#">GESTION DE EMPLEADOS</a>
+		</nav>
+	<h:form>
+	<div class="container">
+	<br></br>
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h1 class="display-4">ACCESO RESTRINGIDO!!!</h1>
+	    <br></br> 
+	    <p class="lead">#{loginBean.mensaje}</p>
+	  </div>
+	</div>
+	</div>
+	</h:form>
+	 
+	<footer class="footer">
+        <div class="container">  
+           <p>&copy; CoDejaVu - Cristian David Henao Hoyos.</p>
+        </div>
+    </footer>
+	      
+      <style>
+          .footer{
+              background-color: #0B2161;
+              width: 100%;
+              height: 25px;
+              bottom: 0;
+              position: fixed;
+              text-align: center;
+              color: #fff;
+              }
+      </style>
+
+</h:body> 
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+
+
+<ui:composition template="/template/plantilla.xhtml">
+	<ui:param name="tituloPagina" value="Consultar Personas" />
+
+	<ui:define name="contenido">
+
+<h:form >
+		<br></br><br></br>
+	
+	<div class="container">	
+		<div class="card">
+		  <h5 class="card-header">Consulta Individual de Empleados</h5>
+		  <div class="card-body">
+		    <h5 class="card-title"></h5>
+		    <p class="card-text">Por favor ingrese el documento del empleado y presione en consultar</p>
+	
+	<div class="container">
+		<div class="form-group row justify-content-end">
+			<h:outputLabel  value="Documento: " for="documento"/>&nbsp;&nbsp;
+			<h:inputText class="form-control col-md-4" value="#{nominaBean.empleadoVo.documento}" id="documento"/>&nbsp;&nbsp;
+			<h:commandLink class="btn btn-primary col-md-1" action="#{nominaBean.consultarPersona()}">
+				<h:graphicImage library="images" name="lupa.png" />
+			</h:commandLink>
+		</div>
+		    
+	    <div class="form-group row">
+			<h:outputLabel value="Nombres: "  for="nombre"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:inputText class="form-control col-md-11" value="#{nominaBean.empleadoVo.nombre}" id="nombre" />
+		</div>
+		
+		<div class="form-group row">
+			<h:outputLabel value="Telefono: " for="telefono"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:inputText class="form-control col-md-3" value="#{nominaBean.empleadoVo.telefono}" id="telefono" />&nbsp;
+		
+			<h:outputLabel value="Direccion: " for="direccion"/>&nbsp;
+			<h:inputText class="form-control col-md-4" value="#{nominaBean.empleadoVo.direccion}" id="direccion"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:outputLabel value="Sexo: " />&nbsp;
+			<h:selectOneMenu class="form-control col-md-2" value="#{nominaBean.empleadoVo.sexo}">
+				<f:selectItem itemValue="M" itemLabel="Masculino"/>
+				<f:selectItem itemValue="F" itemLabel="Femenino"/>
+			</h:selectOneMenu>
+		
+		</div>	
+		<div class="form-group row">
+		
+			<h:outputLabel value="Tipo: " />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:selectOneMenu class="form-control col-md-3" value="#{nominaBean.empleadoVo.tipo}">
+				<f:selectItem itemValue="1" itemLabel="Administrador"/>
+				<f:selectItem itemValue="2" itemLabel="Empleado"/>
+			</h:selectOneMenu>&nbsp;&nbsp;
+			
+			<h:outputLabel value="Salario: " for="salario"/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<h:inputText class="form-control col-md-3" value="#{nominaBean.empleadoVo.salario}" id="salario"/>
+		
+		</div>	
+		<br></br>	
+		<div class="container" >	
+			<div class="form-group row justify-content-end">
+					<h:commandLink class="btn btn-primary col-md-2" value="Actualizar" action="#{nominaBean.actualizarPersona()}" >
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<h:graphicImage library="images" name="edit.png" />
+					</h:commandLink>
+					&nbsp;&nbsp;
+					<h:commandLink class="btn btn-danger col-md-2"  value="Eliminar"
+					 onclick="if(!confirm('Esta seguro de eliminar al empleado?')) return false" 
+					 action="#{nominaBean.eliminarPersona()}" >
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<h:graphicImage library="images" name="delete.png" />
+					</h:commandLink>
+			</div>
+		</div>	
+		<br></br>
+		    
+		  </div>
+		</div>
+	</div>
+		
+		</div>
+		
+			
+		<br></br>
+		
+	
+		<div class="container">
+		
+		<h:panelGroup rendered="#{nominaBean.mostrar}">
+			<div class="alert alert-primary" role="alert">
+				<div class="form-group row">
+		  			<h:outputLabel class="col-md-12" value="#{nominaBean.mensaje}" />
+		  		</div>
+			</div>
+		</h:panelGroup>
+		
+		<h:panelGroup rendered="#{nominaBean.mostrarError}">
+			<div class="alert alert-danger" role="alert">
+				<div class="form-group row">
+		  			<h:outputLabel class="col-md-12" value="#{nominaBean.mensaje}" />
+		  		</div>
+			</div>
+		</h:panelGroup>
+	</div>
+	
+</h:form>
+      
+
+
+	</ui:define>
+</ui:composition>	
+</html>
